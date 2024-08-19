@@ -1,0 +1,25 @@
+import { Request, Response } from "express";
+import { config } from "dotenv";
+import { verify } from "jsonwebtoken";
+config();
+
+export function isAdmin(req: Request, res: Response, next: Function) {
+  const token = req.headers;
+  try {
+    if(token){
+      const isTokenValid = verify(
+        token["token"] as string,
+        process.env.JWT_SECRET!
+      );
+      console.log(isTokenValid);
+      
+      if(isTokenValid) {
+        next();
+      } else {
+        res.status(401).send("Unauthorized User");
+      }
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}

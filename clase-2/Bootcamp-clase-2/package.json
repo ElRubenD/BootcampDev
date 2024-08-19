@@ -1,0 +1,15 @@
+{
+  "name": "bootcamp-clase-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "Balthasar De Weert",
+  "license": "ISC",
+  "description": "Ejercicios de repaso de la clase 2",
+  "devDependencies": {
+    "vitest": "^2.0.3"
+  }
+}
