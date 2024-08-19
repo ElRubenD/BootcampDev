@@ -23,7 +23,7 @@ class ProductService {
         }
     }
     async getProducts(searchParams: ISearchParams) {
-        const { category, brand, size, salersId, filterByPrice, priceRange } = searchParams; 
+        const { category, brand, size, salersId, filterByPrice, priceRange, page = "1", limit = "10" } = searchParams; 
         let priceStart: number | undefined;
         let priceEnd: number | undefined;
         let sort: -1 | 1 | undefined;
@@ -44,6 +44,8 @@ class ProductService {
                 priceStart,
                 priceEnd,
                 sort,
+                page,
+                limit
             );
             return products;
         } catch (error) {

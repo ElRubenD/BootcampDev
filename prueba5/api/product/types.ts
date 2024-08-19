@@ -7,4 +7,6 @@ export interface ISearchParams {
     salersId?: string;
     filterByPrice?: filterByPrice;
     priceRange?: string;
+    page?: string;
+    limit?: string;
 }

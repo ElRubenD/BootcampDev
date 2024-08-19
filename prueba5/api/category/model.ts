@@ -5,11 +5,19 @@ const CategorySchema = new Schema({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+      },
     //soft delete
-/*     active: {
+    active: {
         type: Boolean,
         default: true,
-    }, */
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+      },
 });
 
 const  Category = model("Category", CategorySchema);

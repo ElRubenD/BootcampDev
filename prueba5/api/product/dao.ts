@@ -9,32 +9,22 @@ class ProductDao {
         salersId: string | undefined,
         priceStart: number | undefined,
         priceEnd: number | undefined,
-        sort: -1 | 1 | undefined)
+        sort: -1 | 1 | undefined,
+        page: string,
+        limit: string)
         {
         try {
-            if (!sort) {
-                const products = await Product.find(
-                    {
-                        ...(category ? {category} : {} ),
-                        ...(brand ? {brand} : {} ),
-                        ...(size ? {size} : {} ),
-                        ...(salersId ? {salersId} : {} ),
-                        ...(priceStart && priceEnd ? { price: { $gte: priceStart, $lte: priceEnd }} : {} ),
-                    }
-                );
-                return products;  
-            } else {
-                const products = await Product.find(
-                    {
-                        ...(category ? {category} : {} ),
-                        ...(brand ? {brand} : {} ),
-                        ...(size ? {size} : {} ),
-                        ...(salersId ? {salersId} : {} ),
-                        ...(priceStart && priceEnd ? { price: { $gte: priceStart, $lte: priceEnd },} : {} ),
-                    }
-                ).sort({ price: sort });
-                return products;
-            }
+            const skip = (Number(page) - 1) * Number(limit);
+            const products = await Product.find(
+                {
+                    ...(category ? {category} : {} ),
+                    ...(brand ? {brand} : {} ),
+                    ...(size ? {size} : {} ),
+                    ...(salersId ? {salersId} : {} ),
+                    ...(priceStart && priceEnd ? { price: { $gte: priceStart, $lte: priceEnd },} : {} ),
+                }
+            ).sort(sort && { price: sort }).skip(skip).limit(Number(limit));
+            return products;
         } catch (error) {
             throw Error((error as Error).message);
         }
