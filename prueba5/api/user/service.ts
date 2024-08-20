@@ -11,8 +11,8 @@ const {
     getUserById,
     getUserByMail,
     createUser,
-    updateUserById,
-    deleteUserById,
+    editUser,
+    deleteUser,
 } =  userDao;
 
 class UserService {
@@ -68,7 +68,7 @@ class UserService {
     }
     async editUser(id: string, user: IUser) {
         try {
-            const updatedUser = await updateUserById(id, user);
+            const updatedUser = await editUser(id, user);
             return updatedUser;
         } catch (error) {
             throw Error((error as Error).message);
@@ -76,7 +76,7 @@ class UserService {
     }
     async deleteUser(id: string) {
         try {
-            const deletedUser = await deleteUserById(id);
+            const deletedUser = await deleteUser(id);
             return deletedUser;
         } catch (error) {
             throw Error((error as Error).message);

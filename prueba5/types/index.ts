@@ -11,7 +11,6 @@ export interface IUser {
   avatar: string | undefined;
 };
 
-//type Category = "zapatilla" | "remera" | "pantalon";
 
 export interface IProduct {
     _id: string | undefined;
@@ -23,7 +22,6 @@ export interface IProduct {
     size: string;
     //ver distintos tipos de talles
     category: string;
-    //category: Category;
     image: string | undefined;
 }
 

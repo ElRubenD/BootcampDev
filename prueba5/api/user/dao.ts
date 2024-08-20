@@ -34,7 +34,7 @@ class UserDao {
             throw Error((error as Error).message);
         }
     }
-    async updateUserById(userId: string, user: IUser) {
+    async editUser(userId: string, user: IUser) {
         try {
             const updateUser = await User.findByIdAndUpdate(userId, user, {
                 new: true,
@@ -44,7 +44,7 @@ class UserDao {
             throw Error((error as Error).message);
         }
     }
-    async deleteUserById(userId: string) {
+    async deleteUser(userId: string) {
         try {
             const deleteUser = await User.findByIdAndDelete(userId);
             return deleteUser;
